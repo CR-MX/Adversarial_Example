@@ -36,7 +36,7 @@ def compute_gradient(func, inp, **kwargs):
     return inp.grad.data
 
 def read_image(path):
-    """ Carga imagenes del almacenmiento y lo convierte para torch.Tensor
+    """ Carga imagenes del almacenmiento y lo convierte en tensor
 
     Parámetros
     ----------
@@ -48,7 +48,7 @@ def read_image(path):
     tensor : torch.Tensor
         Lote de una sola muestra nuestras imagenes (lista para ser usada con redes preentrenadas). Laa forma es '(1, 3, 224, 224)'.
     """
-    img = Image.open(path)
+    img = Image.open(path).convert("RGB")
 
     # contine los pasos
     # 1. Cambiamos el tamaño de nuestra imagen para que sea un cuadrado
@@ -67,7 +67,7 @@ def read_image(path):
     return tensor
 
 def to_array(tensor):
-    """Convert torch.Tensor ton np.ndarray
+    """Convert torch.Tensor on np.ndarray
 
     Parameters
     ----------
@@ -77,7 +77,7 @@ def to_array(tensor):
     Returns
     -------
     arr : np.ndarray
-        Array of shape '(*, *, 3)' representing an image that can be plotted directly.
+        Array of shape '(*, *, 3)' representing an image that can be plotted directly. (trazada directamente)
     """
     # Eliminamos la dimención del lote
     tensor_ = tensor.squeeze()
